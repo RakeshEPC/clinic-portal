@@ -14,14 +14,18 @@ if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
 if not st.session_state.logged_in:
-    st.title("🔐 Secure Clinic Portal Login")
-    code_input = st.text_input("Enter your access code:")
-    if st.button("Login"):
+   st.title("🔐 Secure Clinic Portal Login")
+code_input = st.text_input("Enter your access code:")
+
+if st.button("Login"):
     if code_input.strip() == config.get("access_code", ""):
         st.session_state.logged_in = True
     else:
         st.error("Invalid code. Please try again.")
-if not st.session_state.logged_in: st.stop()
+
+if not st.session_state.logged_in:
+    st.stop()
+
 
 # --- MAIN APP ---
 st.title("🏥 Clinic Follow-Up + Diabetes Education")
